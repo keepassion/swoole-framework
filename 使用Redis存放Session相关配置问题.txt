@@ -1,0 +1,28 @@
+1.首页相关配置文件设置
+//config下 cache.php设置 这里session 要指定使用Redis
+$cache['session'] = array(
+    'type' => 'Redis',
+    //'cache_dir' => WEBPATH . '/cache/filecache/',
+    //'cache_dir' => 'tcp://121.40.61.177:7349?auth=chrdw@1314.2&timeout=1800',
+);
+//接下来就是 config下 redis.php设置 
+$redis['master'] = array(
+    'host'    => "0.0.0.0", 
+    'port'    => 6349,  //建议不要设置默认端口 也可以在redis.conf里设置相关bind 和password 安全性更高一些
+    'password' => 'xxxxxxx',
+    'timeout' => 100,
+    'pconnect' => false,
+//    'database' => 1,
+);
+
+//使用
+$this->session->start();
+$_SESSION['test'] = "username";
+$cc = $this->redis->keys("*");
+var_dump($cc);
+这里就可以看到具体的相关信息 因为可以看到redis里存放的是sessionid 这里需要借助本社你的load解析相关参数
+$cc1 = $this->session->load("phpsess_779e19cd2141f117f3bd1698808583f7"); 
+var_dump($cc1);  这里应该就可以看到具体的session信息了  
+
+
+
