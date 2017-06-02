@@ -3,7 +3,7 @@
 $cache['session'] = array(
     'type' => 'Redis',
     //'cache_dir' => WEBPATH . '/cache/filecache/',
-    //'cache_dir' => 'tcp://121.40.61.177:7349?auth=chrdw@1314.2&timeout=1800',
+    //'cache_dir' => '',
 );
 //接下来就是 config下 redis.php设置 
 $redis['master'] = array(
